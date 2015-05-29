@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox id="rootPane" fx:id="rootPane" prefHeight="600" prefWidth="400" styleClass="root-pane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.controller.DyeListingController">
+    <children>
+        <TextFlow id="languageFlow" fx:id="languageFlow" VBox.vgrow="NEVER">     
+            <children>    
+                <Text id="languageLabel" fx:id="languageLabel" styleClass="main-text" text="%choose.your.language" />
+            </children>
+        </TextFlow>
+        <HBox id="languageBox" fx:id="languageBox" styleClass="language-box">
+            <children>
+                <ToggleButton fx:id="enToggle" mnemonicParsing="false" styleClass="language-button" text="%language.english">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="languageSelectionGroup" />
+                    </toggleGroup>
+                </ToggleButton>
+                <Separator orientation="VERTICAL" prefHeight="-1" />
+                <ToggleButton fx:id="frToggle" mnemonicParsing="false" selected="true" styleClass="language-button" text="%language.french" toggleGroup="$languageSelectionGroup" />
+                <Separator orientation="VERTICAL" prefHeight="-1" />
+                <ToggleButton fx:id="deToggle" mnemonicParsing="false" styleClass="language-button" text="%language.german" toggleGroup="$languageSelectionGroup" />
+                <Separator orientation="VERTICAL" prefHeight="-1" />
+                <ToggleButton fx:id="esToggle" mnemonicParsing="false" styleClass="language-button" text="%language.spanish" toggleGroup="$languageSelectionGroup" />
+            </children>
+        </HBox>        
+        <TextFlow id="materialFlow" fx:id="materialFlow" VBox.vgrow="NEVER">     
+            <children>    
+                <Text id="materialLabel" fx:id="materialLabel" styleClass="main-text" text="%choose.your.material" />
+            </children>
+        </TextFlow>
+        <HBox id="materialBox" fx:id="materialBox" styleClass="material-box">
+            <children>
+                <ToggleButton fx:id="clothToggle" mnemonicParsing="false" styleClass="material-button" text="%material.cloth">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="materialSelectionGroup" />
+                    </toggleGroup>        
+                </ToggleButton>
+                <Separator orientation="VERTICAL" prefHeight="-1" />
+                <ToggleButton fx:id="leatherToggle" mnemonicParsing="false" styleClass="material-button" text="%material.leather" toggleGroup="$materialSelectionGroup" />
+                <Separator orientation="VERTICAL" prefHeight="-1" />
+                <ToggleButton fx:id="metalToggle" mnemonicParsing="false" selected="true" styleClass="material-button" text="%material.metal" toggleGroup="$materialSelectionGroup" />
+            </children>
+        </HBox>            
+        <Label id="dyeListLabel" fx:id="dyeListLabel" styleClass="main-text" text="%dye.list" />
+        <StackPane id="colorStack" fx:id="colorStack" VBox.vgrow="ALWAYS">
+            <children>
+                <ScrollPane id="colorScroll" fx:id="colorScroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <content>
+                        <FlowPane id="colorFlow" fx:id="colorFlow" prefHeight="-1" prefWidth="-1" styleClass="color-flow" />                 
+                    </content>
+                </ScrollPane>
+                <ProgressBar id="progressBar" fx:id="progressBar" maxWidth="1.7976931348623157E308" progress="0.0" VBox.vgrow="NEVER" /> 
+            </children>
+        </StackPane>
+        <GridPane fx:id="colorBox" styleClass="color-grid-pane" VBox.vgrow="NEVER">
+            <children>
+                <Rectangle fx:id="mainColorCell" width="64.0" height="64.0" styleClass="color-cell" GridPane.rowSpan="2147483647" GridPane.valignment="TOP" />
+                <Label fx:id="colorLabel" text="Label" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" />
+                <Label fx:id="clothLabel" text="%material.cloth" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <graphic>
+                        <Rectangle fx:id="clothCell" height="16.0" width="16.0" styleClass="color-cell" />
+                    </graphic>
+                </Label>
+                <Label fx:id="leatherLabel" text="%material.leather" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <graphic>
+                        <Rectangle fx:id="leatherCell" height="16.0" width="16.0" styleClass="color-cell" />
+                    </graphic>
+                </Label>
+                <Label fx:id="metalLabel" text="%material.metal" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <graphic>
+                        <Rectangle fx:id="metalCell" height="16.0" width="16.0" styleClass="color-cell"  />
+                    </graphic>
+                </Label>
+                <TextFlow fx:id="leatherFlow" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Text fx:id="clothText" styleClass="color-text" text="%rgb.pattern" />
+                    </children>
+                </TextFlow>
+                <TextFlow fx:id="clothFlow" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <children>
+                        <Text fx:id="leatherText" styleClass="color-text" text="%rgb.pattern" />
+                    </children>
+                </TextFlow>
+                <TextFlow fx:id="metalFlow" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                    <children>
+                        <Text fx:id="metalText" styleClass="color-text" text="%rgb.pattern" />
+                    </children>
+                </TextFlow>
+            </children>
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="-1" prefWidth="-1"  />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="NEVER" />
+                <RowConstraints vgrow="NEVER" />
+                <RowConstraints vgrow="NEVER" />
+            </rowConstraints>
+        </GridPane>
+    </children>
+</VBox>

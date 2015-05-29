@@ -1,0 +1,74 @@
+.root-pane {
+    -fx-background-color: white;
+    -fx-background-image: url("corner.png");
+    -fx-background-position: top left;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 70px 50px 50px 50px;
+    -fx-spacing: 10px;
+    -fx-font-family: serif;
+}
+.label,
+.text {
+    -fx-font-size: 1.4em;        
+}
+.vbox {
+    -fx-spacing: 8px;
+}
+.scroll-pane {
+    -fx-background-color: null;
+}
+.scroll-pane .viewport {
+    -fx-background-color: null;
+}
+.progress-bar {
+    -fx-background-color: null;
+    -fx-min-height: 8px;
+    -fx-pref-height: 8px;
+    -fx-max-height: 8px;
+}
+.progress-bar .bar {
+    -fx-background-color: orangered;
+    -fx-background-insets: 0px;
+    -fx-effect: innershadow(three-pass-box, black, 10, 0, 0, 2);
+}
+.progress-bar .track {
+    -fx-background-color: null;
+    -fx-border-color: black;
+    -fx-border-width: 0.5px; 
+}
+.main-text {
+    -fx-font-size: 2.0em;        
+}
+.color-flow {
+    -fx-hgap: 2px;
+    -fx-vgap: 2px;
+}
+.color-cell {
+    -fx-stroke: black;
+}
+.color-cell:pressed {
+    -fx-stroke: gray;
+}
+.language-box,
+.material-box {
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER;
+}
+.language-button,
+.material-button {
+    -fx-padding: 0px;
+    -fx-background-color: null;
+    -fx-content-display: text-only;
+    -fx-text-fill: gray;
+}
+.language-button:selected,
+.material-button:selected {
+    -fx-text-fill: black;
+}
+.color-grid-pane {
+    -fx-hgap: 6px;
+    -fx-vgap: 6px;
+}
+.color-text {
+    -fx-font-size: 0.8em;
+}
