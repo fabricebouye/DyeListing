@@ -32,7 +32,7 @@ public enum ColorsQuery {
 
     public static Dye dyeInfo(final String languageCode, final int id) throws IOException {
         final JsonObject value = QueryUtils.queryObject(String.format("%s/%d?lang=%s", basecode, id, languageCode)); // NOI18N.
-        final Dye result = DyeFactory.createDye(value);
+        final Dye result = DyeFactory.createDyeFromJSON(value);
         return result;
     }
 
@@ -41,7 +41,7 @@ public enum ColorsQuery {
         final JsonArray array = queryArray(String.format("%s?ids=%s&lang=%s", basecode, idsCode, languageCode)); // NOI18N.
         final List<Dye> result = array.getValuesAs(JsonObject.class)
                 .stream()
-                .map(value -> DyeFactory.createDye(value))
+                .map(value -> DyeFactory.createDyeFromJSON(value))
                 .collect(Collectors.toList());
         return Collections.unmodifiableList(result);
     }

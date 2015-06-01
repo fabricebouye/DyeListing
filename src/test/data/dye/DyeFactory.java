@@ -13,12 +13,11 @@ public enum DyeFactory {
     INSTANCE;
 
     /**
-     * Converti une teinture au format JSON en instance de la classe
-     * {@code Dye}.
+     * Convertit une teinture au format JSON en instance de la classe {@code Dye}.
      * @param jsonObject L'objet source.
      * @return Une instance de la classe {@code Dye}, jamais {@code null}.
      */
-    public static Dye createDye(final JsonObject jsonObject) {
+    public static Dye createDyeFromJSON(final JsonObject jsonObject) {
         final Dye result = new Dye();
         result.id = jsonObject.getInt("id"); // NOI18N.
         result.name = jsonObject.getString("name"); // NOI18N.
@@ -27,20 +26,19 @@ public enum DyeFactory {
         final int green = base_rgb.getInt(1);
         final int blue = base_rgb.getInt(2);
         result.base = Color.rgb(red, green, blue);
-        result.cloth = createMaterial(jsonObject.getJsonObject("cloth")); // NOI18N.
-        result.leather = createMaterial(jsonObject.getJsonObject("leather")); // NOI18N.
-        result.metal = createMaterial(jsonObject.getJsonObject("metal")); // NOI18N.
+        result.cloth = createMaterialFromJSON(jsonObject.getJsonObject("cloth")); // NOI18N.
+        result.leather = createMaterialFromJSON(jsonObject.getJsonObject("leather")); // NOI18N.
+        result.metal = createMaterialFromJSON(jsonObject.getJsonObject("metal")); // NOI18N.
         return result;
     }
 
     /**
-     * Converti un matériau au format JSON en instance de la classe
-     * {@code Dye.Material}.
+     * Convertit un matériau au format JSON en instance de la classe {@code Dye.Material}.
      * @param jsonObject L'objet source.
      * @return Une instance de la classe {@code Dye.Material}, jamais
      * {@code null}.
      */
-    private static Material createMaterial(final JsonObject jsonObject) {
+    private static Material createMaterialFromJSON(final JsonObject jsonObject) {
         final Material result = new Material();
         result.brightness = jsonObject.getJsonNumber("brightness").intValue(); // NOI18N.
         result.contrast = jsonObject.getJsonNumber("contrast").doubleValue(); // NOI18N.
@@ -51,5 +49,4 @@ public enum DyeFactory {
         result.color = Color.rgb(red, green, blue);
         return result;
     }
-
 }
