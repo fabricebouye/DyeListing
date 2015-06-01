@@ -103,6 +103,11 @@ public final class DyeListingController implements Initializable {
         loadDyes(languageCode, materialCode);
     }
 
+    /**
+     * Charge les teintures de manière asynchrone.
+     * @param languageCode Le code du language.
+     * @param materialCode Le code du matériau (pour l'affichage).
+     */
     private void loadDyes(final String languageCode, final String materialCode) {
         if (languageCode == null) {
             return;
@@ -113,6 +118,7 @@ public final class DyeListingController implements Initializable {
         progressBar.setProgress(0);
         colorFlow.setVisible(false);
         colorFlow.getChildren().clear();
+        // Plutôt que de retourner les teintures, ce service va retourner les noeuds graphiques à afficher à l'écran.
         final Service<List<Node>> query = new Service<List<Node>>() {
 
             @Override
@@ -137,6 +143,9 @@ public final class DyeListingController implements Initializable {
         query.start();
     }
 
+    /**
+     * Invoqué lorsque le langue sélectionné change.
+     */
     private final InvalidationListener languageInvalidationListener = observable -> {
         final Toggle selectedMaterialToggle = materialSelectionGroup.getSelectedToggle();
         final String material = (selectedMaterialToggle == null) ? null : (String) selectedMaterialToggle.getUserData();
@@ -147,6 +156,9 @@ public final class DyeListingController implements Initializable {
         }
     };
 
+    /**
+     * Invoqué lorsque le matériau sélectionné change.
+     */
     private final InvalidationListener materialInvalidationListener = observable -> {
         final Toggle selectedMaterialToggle = materialSelectionGroup.getSelectedToggle();
         final String material = (selectedMaterialToggle == null) ? null : (String) selectedMaterialToggle.getUserData();
@@ -165,6 +177,12 @@ public final class DyeListingController implements Initializable {
         }
     };
 
+    /**
+     * Donne la bonne couleur pour le matériau.
+     * @param materialCode Le code du matériau.
+     * @param dyeCode La teinture.
+     * @return Une isntance de {@code Color}, jamais {@code null}.
+     */
     private Color colorForMaterial(final String materialCode, final Dye dyeCode) {
         Color result = null;
         switch (materialCode) {
@@ -184,6 +202,10 @@ public final class DyeListingController implements Initializable {
         return result;
     }
 
+    /**
+     * Affiche les détails de la teinture sélectionnée.
+     * @param dye La teinture sélectionnée, peut être {@code null}.
+     */
     private void displayDye(final Dye dye) {
         colorBox.setVisible(dye != null);
         colorBox.setUserData(dye);
@@ -221,6 +243,12 @@ public final class DyeListingController implements Initializable {
         }
     }
 
+    /**
+     * Crée une cellule pour une teitnure.
+     * @param dye La teinture sélectionnée.
+     * @param materialCode Le code du matériau à afficher.
+     * @return Une instance de {@code Node}, jamais {@code null}.
+     */
     private Node createCellForDye(final Dye dye, final String materialCode) {
         final Rectangle result = new Rectangle(16, 16);
         result.getStyleClass().add("color-cell"); // NOI18N.
@@ -234,8 +262,8 @@ public final class DyeListingController implements Initializable {
     }
 
     /**
-     * Cette tâche récupère la liste des identifiants de teintures puis ensuite
-     * recupère chaque teinture une par une.
+     * Cette tâche récupère la liste des identifiants de teintures puis ensuite recupère chaque teinture une par une.
+     * <br/>À éviter !!!
      * @author Fabrice Bouyé
      */
     private final class Strategy1Task extends Task<List<Node>> {
@@ -345,6 +373,10 @@ public final class DyeListingController implements Initializable {
         }
     }
 
+    /**
+     * Cette tâche récupère toutes les teintures par lot de 100.
+     * @author Fabrice Bouyé
+     */
     private final class Strategy3Task extends Task<List<Node>> {
 
         private final String languageCode;
