@@ -19,10 +19,10 @@ public enum ColorsQuery {
 
     INSTANCE;
 
-    private static final String basecode = "https://api.guildwars2.com/v2/colors"; // NOI18N.
+    private static final String BASECODE = "https://api.guildwars2.com/v2/colors"; // NOI18N.
 
     public static List<Integer> list() throws IOException {
-        final JsonArray array = queryArray(basecode);
+        final JsonArray array = queryArray(BASECODE);
         final List<Integer> result = array.getValuesAs(JsonNumber.class)
                 .stream()
                 .map(value -> value.intValue())
@@ -31,14 +31,14 @@ public enum ColorsQuery {
     }
 
     public static Dye dyeInfo(final String languageCode, final int id) throws IOException {
-        final JsonObject value = QueryUtils.queryObject(String.format("%s/%d?lang=%s", basecode, id, languageCode)); // NOI18N.
+        final JsonObject value = QueryUtils.queryObject(String.format("%s/%d?lang=%s", BASECODE, id, languageCode)); // NOI18N.
         final Dye result = DyeFactory.createDyeFromJSON(value);
         return result;
     }
 
     public static List<Dye> dyeInfos(final String languageCode, final int... ids) throws IOException {
         final String idsCode = idsToString(ids);
-        final JsonArray array = queryArray(String.format("%s?ids=%s&lang=%s", basecode, idsCode, languageCode)); // NOI18N.
+        final JsonArray array = queryArray(String.format("%s?ids=%s&lang=%s", BASECODE, idsCode, languageCode)); // NOI18N.
         final List<Dye> result = array.getValuesAs(JsonObject.class)
                 .stream()
                 .map(value -> DyeFactory.createDyeFromJSON(value))
