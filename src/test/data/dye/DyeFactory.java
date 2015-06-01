@@ -40,8 +40,8 @@ public enum DyeFactory {
      * @return Une instance de la classe {@code Dye.Material}, jamais
      * {@code null}.
      */
-    private static Dye.Material createMaterial(final JsonObject jsonObject) {
-        final Dye.Material result = new Dye.Material();
+    private static Material createMaterial(final JsonObject jsonObject) {
+        final Material result = new Material();
         result.brightness = jsonObject.getJsonNumber("brightness").intValue(); // NOI18N.
         result.contrast = jsonObject.getJsonNumber("contrast").doubleValue(); // NOI18N.
         final JsonArray rgb = jsonObject.getJsonArray("rgb"); // NOI18N.

@@ -8,34 +8,6 @@ import javafx.scene.paint.Color;
  */
 public final class Dye {
 
-    /**
-     * Un matériau d'application de la teinture (tissu, cuir ou métal).
-     * @author Fabrice Bouyé
-     */
-    public static final class Material {
-
-        int brightness;
-        double contrast;
-        Color color;
-
-        /**
-         * Crée une nouvelle instance vide.
-         */
-        Material() {
-        }
-
-        public int getBrightness() {
-            return brightness;
-        }
-
-        public double getContrast() {
-            return contrast;
-        }
-
-        public Color getColor() {
-            return color;
-        }
-    }
 
     int id;
     String name;
